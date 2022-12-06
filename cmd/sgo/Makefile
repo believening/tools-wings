@@ -2,9 +2,9 @@ default: build install
 
 .PHONY: build
 build:
-	go build -ldflags='-extldflags -static -s -w' .
-	sudo setcap "CAP_DAC_OVERRIDE+eip" sgo
+	go build -trimpath -ldflags='-extldflags -static -s -w' .
 
 .PHONY: install
 install:
 	cp sgo $(HOME)/bin/sgo
+	sudo setcap "CAP_DAC_OVERRIDE+eip" $(HOME)/bin/sgo

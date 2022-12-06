@@ -13,19 +13,16 @@ import (
 
 var (
 	goroot         string = "/usr/local/go"
-	currentVersion string
+	currentVersion string = currentGo()
 
 	supportVersions      map[string]struct{} = map[string]struct{}{}
 	shortSupportVersions map[string]struct{} = map[string]struct{}{}
 )
 
-func init() {
-	currentVersion = currentGoENV("GOVERSION")
-}
-
-func currentGoENV(env string) string {
-	out, _ := exec.Command(goroot+"/bin/go", "env", env).CombinedOutput()
-	return strings.TrimSpace(string(out))
+func currentGo() string {
+	out, _ := exec.Command(goroot+"/bin/go", "version").CombinedOutput()
+	// like: `go version go1.19 linux/amd64`
+	return strings.Fields(strings.TrimSpace(string(out)))[2]
 }
 
 func initSupportVersions() {
