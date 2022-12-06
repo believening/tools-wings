@@ -1,0 +1,39 @@
+digraph database {
+node [shape=box];
+2 [label="context"];
+1 [label="database/sql"];
+3 [label="database/sql/driver"];
+4 [label="errors"];
+5 [label="fmt"];
+6 [label="io"];
+7 [label="reflect"];
+8 [label="runtime"];
+9 [label="sort"];
+10 [label="strconv"];
+11 [label="sync"];
+12 [label="sync/atomic"];
+13 [label="time"];
+14 [label="unicode"];
+15 [label="unicode/utf8"];
+1 -> 2;
+1 -> 3;
+1 -> 4;
+1 -> 5;
+1 -> 6;
+1 -> 7;
+1 -> 8;
+1 -> 9;
+1 -> 10;
+1 -> 11;
+1 -> 12;
+1 -> 13;
+1 -> 14;
+1 -> 15;
+3 -> 2;
+3 -> 4;
+3 -> 5;
+3 -> 7;
+3 -> 10;
+3 -> 13;
+}
+

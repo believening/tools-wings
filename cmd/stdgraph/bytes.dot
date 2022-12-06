@@ -1,0 +1,15 @@
+digraph bytes {
+node [shape=box];
+1 [label="bytes"];
+2 [label="errors"];
+3 [label="internal/bytealg"];
+4 [label="io"];
+5 [label="unicode"];
+6 [label="unicode/utf8"];
+1 -> 2;
+1 -> 3;
+1 -> 4;
+1 -> 5;
+1 -> 6;
+}
+
