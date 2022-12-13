@@ -12,17 +12,18 @@ import (
 )
 
 var (
-	goroot         string = "/usr/local/go"
-	currentVersion string = currentGo()
+	goroot                       string = "/usr/local/go"
+	currentVersion, currentShort string = currentGo()
 
 	supportVersions      map[string]struct{} = map[string]struct{}{}
 	shortSupportVersions map[string]struct{} = map[string]struct{}{}
 )
 
-func currentGo() string {
+func currentGo() (string, string) {
 	out, _ := exec.Command(goroot+"/bin/go", "version").CombinedOutput()
 	// like: `go version go1.19 linux/amd64`
-	return strings.Fields(strings.TrimSpace(string(out)))[2]
+	version := strings.Fields(strings.TrimSpace(string(out)))[2]
+	return version, version[2:]
 }
 
 func initSupportVersions() {
@@ -77,7 +78,11 @@ func listSupportVersions() {
 	}
 	sort.Strings(versions)
 	for _, version := range versions {
-		fmt.Println(version)
+		tpl := " %s\n"
+		if version == currentShort {
+			tpl = "-%s\n"
+		}
+		fmt.Printf(tpl, version)
 	}
 }
 
