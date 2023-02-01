@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package proto;
+
+
+message ProtoBufGoGo {
+  string name = 1;
+  int64 birthDay = 2;
+  string phone = 3;
+  int32 siblings = 4;
+  bool spouse = 5;
+  double money = 6;
+}
